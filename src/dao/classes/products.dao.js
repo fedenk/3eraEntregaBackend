@@ -7,7 +7,7 @@ export default class Products {
     }
 
     getProductById = async (id) => {
-        const result = await productsModel.findOne(id);
+        const result = await productsModel.findById(id);
         return result;
     }
 

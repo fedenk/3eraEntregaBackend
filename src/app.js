@@ -8,6 +8,7 @@ import Messages from './dao/classes/messages.dao.js';
 import usersRouter from './routes/users.router.js';
 import viewsRouter from './routes/views.router.js';
 import productsRouter from './routes/products.router.js';
+import cartsRouter from './routes/carts.router.js';
 
 const messageManager = new Messages();
 
@@ -31,6 +32,7 @@ try {
 
 app.use('/api/users', usersRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/carts', cartsRouter);
 app.use('/', viewsRouter);
 
 

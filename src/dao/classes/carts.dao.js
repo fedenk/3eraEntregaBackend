@@ -1,13 +1,16 @@
 import cartsModel  from '../models/carts.model.js';
 
+
 export default class Carts {
-    constructor() {
-        console.log('Working carts with DB');
-    }
 
     getAll = async () => {
         const carts = await cartsModel.find().lean();
         return carts;
+    }
+
+    getById = async (cid) => {
+        const cart = await cartsModel.findById(cid);
+        return cart;
     }
 
     save = async (cart) => {
@@ -15,8 +18,13 @@ export default class Carts {
         return result;
     }
 
-    update = async (id, cart) => {
-        const result = await cartsModel.findByIdAndUpdate(id, cart);
+    update = async (cid, cart) => {
+        const result = await cartsModel.findByIdAndUpdate(cid, cart);
+        return result;
+    }
+
+    delete = async (id) => {
+        const result = await cartsModel.findByIdAndDelete(id);
         return result;
     }
 }
