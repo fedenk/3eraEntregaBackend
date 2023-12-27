@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import Users from '../dao/classes/users.dao.js';
 import UsersDto from '../DTOs/users.dto.js';
+import { accessRolesEnum, passportStrategiesEnum } from '../config/enums.js';
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.get('/current', async (req,res) => {
     
 });
 
-router.get('/chat', (req,res) =>{
+router.get('/chat',[accessRolesEnum.USER], passportStrategiesEnum.JWT, async (req,res) =>{
     res.render('chat');
 });
 

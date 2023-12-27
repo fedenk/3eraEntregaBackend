@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const cartsCollection = 'carts';
 
 const cartsSchema = new mongoose.Schema({
+
     products: {
         type: [
             {
@@ -26,7 +27,7 @@ const cartsSchema = new mongoose.Schema({
 
 cartsSchema.pre('find', function() {
     this.populate('products.product');
-})
+});
 
 const cartsModel = mongoose.model(cartsCollection, cartsSchema);
 

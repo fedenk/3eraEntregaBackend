@@ -1,6 +1,7 @@
 import * as cartsService from '../services/carts.service.js';
 import * as productsService from '../services/products.service.js';
 
+
 const getCarts = async (req,res) => {
     try {
         const result = await cartsService.getCarts();
@@ -60,9 +61,23 @@ const deleteCart = async (req,res) => {
     }
 }
 
+const purchase = async (req,res) => {
+    try {
+        const { cid } = req.params;
+        const { user } = req.user;
+
+       const result = await cartsService.purchase(cid, user);
+
+        res.send({ status: 'success', payload: result });
+    } catch (error) {
+        res.status(500).send({ status: 'error', message: error.message });
+    }
+}
+
 export {
     getCarts,
     createCart,
     updateCart,
-    deleteCart
+    deleteCart,
+    purchase
 }
